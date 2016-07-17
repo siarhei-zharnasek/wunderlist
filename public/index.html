@@ -5,12 +5,21 @@
     <title>Wunderlist</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <script src="javascripts/app.js"></script>
-    <script src="javascripts/controllers/MainCtrl.js"></script>
+    <script src="javascripts/controllers/todoCtrl.js"></script>
   </head>
-  <body>
-    <span>Hello there!</span>
-    <div ng-controller="MainCtrl">
-      {{test}}
-    </div>
+  <body ng-controller="todoCtrl">
+    <p>Type new todo</p>
+    <input type="text" ng-model="newTodo" autoFocus>
+    <button ng-click="addTodo()">ADD TODO</button>
+    <ul>
+      <li ng-repeat="todo in todos | filter:completed">
+        <input type="checkbox" ng-model="todo._id" ng-click="changeTodo(todo)" ng-checked="todo['done']">
+        <span>{{todo['text']}}</span>
+        <button ng-click="deleteTodo(todo)">DELETE</button>
+      </li>
+    </ul>
+    <button ng-click="showCompleted()">SHOW COMPLETED</button>
+    <button ng-click="showNotCompleted()">SHOW NOT COMPLETED</button>
+    <button ng-click="showAll()">SHOW ALL</button>
   </body>
 </html>

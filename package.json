@@ -6,16 +6,20 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
-    "body-parser": "~1.15.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "express": "~4.13.4",
-    "mongoose": "~4.4.8",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "debug": "*",
+    "express": "^4.14.0",
+    "mongodb": "*",
+    "mongoose": "^4.5.4",
+    "morgan": "*",
+    "serve-favicon": "*"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2",
-    "webpack": "^1.13.1"
+    "express-session": "*",
+    "nodemon": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "webpack": "*"
   }
 }

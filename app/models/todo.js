@@ -6,4 +6,4 @@ var toDos = new Schema({
   done: Boolean
 });
 
-module.exports = toDos;
+module.exports = mongoose.model('ToDos', toDos);
