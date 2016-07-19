@@ -5,21 +5,37 @@
     <title>Wunderlist</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <script src="javascripts/app.js"></script>
-    <script src="javascripts/controllers/todoCtrl.js"></script>
+    <script src="javascripts/controllers/todoController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
-  <body ng-controller="todoCtrl">
-    <p>Type new todo</p>
-    <input type="text" ng-model="newTodo" autoFocus>
-    <button ng-click="addTodo()">ADD TODO</button>
-    <ul>
-      <li ng-repeat="todo in todos | filter:completed">
-        <input type="checkbox" ng-model="todo._id" ng-click="changeTodo(todo)" ng-checked="todo['done']">
-        <span>{{todo['text']}}</span>
-        <button ng-click="deleteTodo(todo)">DELETE</button>
-      </li>
-    </ul>
-    <button ng-click="showCompleted()">SHOW COMPLETED</button>
-    <button ng-click="showNotCompleted()">SHOW NOT COMPLETED</button>
-    <button ng-click="showAll()">SHOW ALL</button>
+  <body ng-controller="todoController">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-3 col-md-3">
+          <h3 class="account">Admin</h3>
+          <p class="logout">Logout</p>
+          <a href="/login">LOGIN</a>
+        </div>
+        <div class="col-xs-15 col-md-9">
+          <form>
+            <div class="form-group">
+              <label for="todoInput">Type new todo</label>
+              <input type="text" id="todoInput" ng-model="newTodo" class="form-control" autoFocus>
+              <button class="btn btn-primary" ng-click="addTodo()">ADD TODO</button>
+            </div>
+          </form>
+          <ul class="list-unstyled">
+            <li ng-repeat="todo in todos | filter:completed">
+              <input type="checkbox" ng-model="todo.done" ng-click="changeTodo(todo)" ng-checked="todo['done']">
+              <span>{{todo['text']}}</span>
+              <span ng-click="deleteTodo(todo)">X</span>
+            </li>
+          </ul>
+          <button class="btn btn-success" ng-click="showCompleted()">SHOW COMPLETED</button>
+          <button class="btn btn-danger" ng-click="showNotCompleted()">SHOW NOT COMPLETED</button>
+          <button class="btn btn-info" ng-click="showAll()">SHOW ALL</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

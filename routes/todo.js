@@ -47,25 +47,16 @@ router.route('/')
     })
 
     .put(function(req, res) {
-      ToDos.findOne({
-          _id: req.params.id
-        }, function(err, todo) {
-          if (err) {
-            res.send(err);
-          } else {
-            todo.text = req.body.text || todo.text;
-            todo.done = req.body.done || todo.done;
-
-            todo.save(function(err) {
-              if (err) {
-                res.send(err);
-              } else {
-                getAllTodos(res);
-              }
-            });
-          }
+      ToDos.findOneAndUpdate({ _id: req.params.id }, {
+        text: req.body.text,
+        done: req.body.done
+      }, function(err, todo) {
+        if (err) {
+          res.send(err);
+        } else {
+          getAllTodos(res);
         }
-      );
-    })
+      });
+    });
 
 module.exports = router;

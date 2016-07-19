@@ -15,7 +15,7 @@ var app = express();
 
 mongoose.connect(configDB.url);
 
-//require('./config/passport.js')(passport);
+require('./config/passport.js')(passport);
 
 /*app.use(express.static(__dirname + '/public'));
 
@@ -81,6 +81,10 @@ app.use(session({ secret: 'wunderlist',
 app.use(passport.initialize());
 app.use(passport.session());  //login sessions
 
-require('./routes/index')(passport, app);
+app.set('views', __dirname + '/public');
+app.engine('html', require('consolidate').handlebars);
+app.set('view engine', 'html');
+
+require('./routes/index')(app);
 
 module.exports = app;
